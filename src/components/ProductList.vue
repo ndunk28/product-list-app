@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container>
-      <div class="product-title p-2 mt-3">
+      <div class="product-title p-2 mt-3 pt-3">
         <b-row>
           <b-col cols="8">
             <h3>Product List</h3>
@@ -15,7 +15,7 @@
       <div class="product-search p-2 mb-2">
         <b-row>
           <b-col cols="6">
-            <b-form-input v-model="searchProduct" placeholder="Typing to search..." />
+            <b-form-input type="search" v-model="searchProduct" placeholder="Typing to search..."  />
           </b-col>
         </b-row>
       </div>
@@ -37,6 +37,9 @@
                 <b-button variant="danger" class="ml-2" @click="confirmDelete(product.id)">Delete</b-button>
               </template>
             </b-card>
+          </b-col>
+          <b-col v-if="!filteredProducts.length" md="12" class="mb-4 text-center">
+            <p>No Data</p>
           </b-col>
         </b-row>
       </div>

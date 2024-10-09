@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <header-list />
     <product-list />
   </div>
 </template>
