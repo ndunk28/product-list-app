@@ -56,7 +56,11 @@
             <b-form-textarea v-model="productForm.description" required rows="3"></b-form-textarea>
           </b-form-group>
           <b-form-group label="Image">
-            <b-form-file @change="onImageChange" accept="image/*"></b-form-file>
+            <div class="d-flex mb-3">
+              <b-form-file ref="file-input" @change="onImageChange" accept="image/*" class="w-auto flex-grow-1"></b-form-file>
+              <b-button v-if="productForm.image" variant="danger" class="ml-3" @click="clearImage">Clear image</b-button>
+            </div>
+            <b-img v-if="productForm.image" :src="productForm.image" class="mb-3" fluid block rounded></b-img>
           </b-form-group>
           <b-row>
             <b-col cols="6">
@@ -166,6 +170,10 @@ export default {
         this.productForm.image = e.target.result;
       };
       reader.readAsDataURL(file);
+    },
+    clearImage() {
+      this.productForm.image = null;
+      this.$refs['file-input'].reset();
     },
   },
 };
