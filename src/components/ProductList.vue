@@ -89,6 +89,7 @@ export default {
   data() {
     return {
       searchProduct: '',
+      titleModal: '',
       isModalVisible: false,
       isDeleteModalVisible: false,
       productDeleteId: null,
@@ -103,13 +104,6 @@ export default {
     };
   },
   computed: {
-    titleModal(){
-      if (this.productForm.id) {
-        return 'Edit Product'
-      } else {
-        return 'Add Product'
-      }
-    },
     filteredProducts() {
       return this.$store.getters.filteredProducts(this.searchProduct);
     },
@@ -129,6 +123,7 @@ export default {
   },
   methods: {
     showProductModal() {
+      this.titleModal = 'Add Product';
       this.productForm = { id: null, name: '', price: '', description: '', image: null };
       this.isModalVisible = true;
     },
@@ -145,6 +140,7 @@ export default {
       this.isModalVisible = false;
     },
     editProduct(product) {
+      this.titleModal = 'Edit Product';
       this.productForm = { ...product };
       this.originalProduct = { ...product }; 
       this.isModalVisible = true;
